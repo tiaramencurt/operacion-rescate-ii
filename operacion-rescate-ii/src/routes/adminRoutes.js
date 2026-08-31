@@ -1,9 +1,9 @@
 const express = require("express");
-const { listUsers } = require("../controllers/adminController");
-const adminMiddleware = require("../middleware/adminMiddleware");
-
 const router = express.Router();
+const authMiddleware = require("../middleware/authMiddleware");
+const adminMiddleware = require("../middleware/adminMiddleware");
+const { getAllUsers } = require("../controllers/adminController");
 
-router.get("/all", adminMiddleware, listUsers);
+router.get("/all", authMiddleware, adminMiddleware, getAllUsers);
 
 module.exports = router;
