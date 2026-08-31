@@ -12,7 +12,7 @@ async function register(req, res, next) {
 
     const exists = users.find((u) => u.email === email);
     if (exists) {
-      return res.status(200).json({ message: "Usuario ya registrado" });
+      return res.status(400).json({ message: "Usuario ya registrado" });
     }
 
     const hash = await bcrypt.hash(password, 10);
@@ -44,7 +44,7 @@ async function login(req, res, next) {
     const user = users.find((u) => u.email === email);
 
     if (!user) {
-      res.status(200).json({ message: "Credenciales invalidas" });
+      return res.status(401).json({ message: "Credenciales invalidas" });
     }
 
     const match = await bcrypt.compare(password, user.password);
