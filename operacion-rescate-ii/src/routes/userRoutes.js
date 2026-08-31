@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/me", authMiddleware, getProfile);
 router.put("/me", authMiddleware, updateMe);
 
-router.get("/orders", (req, res) => {
+router.get("/orders", authMiddleware, (req, res) => {
   return res.status(200).json({
     orders: [
       { id: "A1", total: 1250 },
