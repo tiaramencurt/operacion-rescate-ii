@@ -11,7 +11,7 @@ function getProfile(req, res) {
 }
 
 function updateMe(req, res) {
-  const userId = req.body.userId || req.user.id;
+  const userId = req.user.id;
   const user = users.find((u) => u.id === userId);
 
   if (!user) {
