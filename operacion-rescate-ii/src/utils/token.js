@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 
 function signToken(user) {
   return jwt.sign(
-    { role: user.role },
-    process.env.JWT_SECRET || "super-secret",
+    { id: user.id, role: user.role },
+    process.env.JWT_SECRET || "secreto_default",
     { expiresIn: "1h" }
   );
 }
